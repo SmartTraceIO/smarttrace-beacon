@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
+import { ApplicationContext } from '../services/application-context';
 
 /* ***********************************************************
 * Keep data that is displayed in your app drawer in the MyDrawer component class.
@@ -18,6 +20,8 @@ export class MyDrawerComponent implements OnInit {
     *************************************************************/
     @Input() selectedPage: string;
 
+    constructor(private router: Router, private applicationContext: ApplicationContext) {}
+
     ngOnInit(): void {
         /* ***********************************************************
         * Use the MyDrawerComponent "onInit" event handler to initialize the properties data values.
@@ -31,5 +35,10 @@ export class MyDrawerComponent implements OnInit {
     *************************************************************/
     isPageSelected(pageTitle: string): boolean {
         return pageTitle === this.selectedPage;
+    }
+
+    onLogoutButtonTap(): void {
+        // this.applicationContext.logout();
+        this.router.navigate(['/login']);
     }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterExtensions } from "nativescript-angular/router";
 
 /* ***********************************************************
@@ -15,6 +15,7 @@ export class MyDrawerItemComponent implements OnInit {
     @Input() route: string;
     @Input() icon: string;
     @Input() isSelected: boolean;
+    @Output() tap: EventEmitter<any> = new EventEmitter();
 
     constructor(private routerExtensions: RouterExtensions) {
 
@@ -32,10 +33,13 @@ export class MyDrawerItemComponent implements OnInit {
     * based on the tapped navigationItem's route.
     *************************************************************/
     onNavItemTap(navItemRoute: string): void {
-        this.routerExtensions.navigate([navItemRoute], {
-            transition: {
-                name: "fade"
-            }
-        });
+        if (navItemRoute) {
+            this.routerExtensions.navigate([navItemRoute], {
+                transition: {
+                    name: "fade"
+                }
+            });
+        }
+        this.tap.emit(true);
     }
 }

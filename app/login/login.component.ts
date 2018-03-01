@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from '@angular/router';
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -13,13 +14,12 @@ import { Component, OnInit } from "@angular/core";
     templateUrl: "./login.component.html"
 })
 export class LoginComponent implements OnInit {
+    isLoading: boolean = false;
     email: string;
     password: string;
 
-    constructor() {
-        /* ***********************************************************
-        * Use the constructor to inject app services that you need in this component.
-        *************************************************************/
+    constructor(private router: Router) {
+
     }
 
     ngOnInit(): void {
@@ -28,21 +28,17 @@ export class LoginComponent implements OnInit {
         *************************************************************/
     }
 
-    onLoginWithSocialProviderButtonTap(): void {
-        /* ***********************************************************
-        * For log in with social provider you can add your custom logic or
-        * use NativeScript plugin for log in with Facebook
-        * http://market.nativescript.org/plugins/nativescript-facebook
-        *************************************************************/
-    }
-
     onSigninButtonTap(): void {
         const email = this.email;
         const password = this.password;
 
-        /* ***********************************************************
-        * Call your custom sign in logic using the email and password data.
-        *************************************************************/
+        this.isLoading = true;
+
+        this.router.navigate(['/home']);
+    }
+
+    onSignupButtonTap(): void {
+        this.router.navigate(['/signup']);
     }
 
     onForgotPasswordTap(): void {

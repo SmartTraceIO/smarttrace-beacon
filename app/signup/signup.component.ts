@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import {RouterExtensions} from 'nativescript-angular/router';
 
 /* ***********************************************************
 * Before you can navigate to this page from your app, you need to reference this page's module in the
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
     email: string;
     password: string;
 
-    constructor() {
+    constructor(private routerExtensions: RouterExtensions) {
         /* ***********************************************************
         * Use the constructor to inject app services that you need in this component.
         *************************************************************/
@@ -45,5 +46,12 @@ export class SignupComponent implements OnInit {
         /* ***********************************************************
         * Call your custom signup logic using the email and password data.
         *************************************************************/
+    }
+
+    onLoginButtonTap(): void {
+        this.routerExtensions.navigate(['/login'], {
+            transition: {
+                name: "fade"
+            }});
     }
 }
