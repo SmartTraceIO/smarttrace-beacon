@@ -1,0 +1,5 @@
+{
+  "appId": "au.com.smarttrace.Beacon",
+  "minSdkVersion": 17,
+  "targetSdkVersion": 26
+}
