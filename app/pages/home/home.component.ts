@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { RouterExtensions } from 'nativescript-angular';
 import { DrawerTransitionBase, SlideInOnTopTransition } from "nativescript-pro-ui/sidedrawer";
 import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
 
@@ -16,9 +17,7 @@ export class HomeComponent implements OnInit {
 
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    /* ***********************************************************
-    * Use the sideDrawerTransition property to change the open/close animation of the drawer.
-    *************************************************************/
+    constructor(private routerExtensions: RouterExtensions) {}
     ngOnInit(): void {
         this._sideDrawerTransition = new SlideInOnTopTransition();
     }
@@ -33,5 +32,13 @@ export class HomeComponent implements OnInit {
     *************************************************************/
     onDrawerButtonTap(): void {
         this.drawerComponent.sideDrawer.showDrawer();
+    }
+
+    onNewShipmentButtonTap(): void {
+        this.routerExtensions.navigate(['new-shipment'], {
+            transition: {
+                name: 'fade'
+            }
+        });
     }
 }
