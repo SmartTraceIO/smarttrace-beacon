@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes } from "@angular/router";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
+import {BluetoothModule} from './pages/bluetooth/bluetooth.module';
 import {NewShipmentModule} from './pages/new-shipment/new-shipment.module';
 
 const routes: Routes = [
@@ -9,7 +10,7 @@ const routes: Routes = [
     { path: "signup", loadChildren: "./signup/signup.module#SignupModule" },
     { path: "home", loadChildren: "./pages/home/home.module#HomeModule" },
     { path: "new-shipment", loadChildren: "./pages/new-shipment/new-shipment.module#NewShipmentModule" },
-
+    { path: "bluetooth", loadChildren: "./pages/bluetooth/bluetooth.module#BluetoothModule" },
     { path: "browse", loadChildren: "./pages/browse/browse.module#BrowseModule" },
     { path: "search", loadChildren: "./pages/search/search.module#SearchModule" },
     { path: "featured", loadChildren: "./pages/featured/featured.module#FeaturedModule" },

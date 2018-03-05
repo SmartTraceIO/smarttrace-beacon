@@ -1,6 +1,23 @@
 <ActionBar class="action-bar">
-    <Label class="action-bar-title" text="Home"></Label>
+    <Label class="action-bar-title" text="Bluetooth"></Label>
 </ActionBar>
 
-<StackLayout class="page">
-</StackLayout>
+<GridLayout rows="auto, *, auto" columns="*" class="page p-t-15">
+    <ActivityIndicator busy="{{ isLoading }}" row="1" col="0" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
+    <GridLayout rows="*">
+        <ListView [items]="peripherals" (itemTap)="onPeripheralTap" separatorColor="#90c3d4" class="list-group">
+            <ng-template let-peripheral="item" let-i="index" let-odd="odd" let-even="even">
+                <StackLayout orientation="horizontal" class="list-group-item">
+                    <StackLayout class="padded-label-stack">
+                        <Image horizontalAlignment="right" width="30" src="~/res/signal-strength.png"></Image>
+                        <Label horizontalAlignment="right" width="30" text="{{ peripheral.RSSI }}" class="rssi-label"></Label>
+                    </StackLayout>
+                    <StackLayout class="padded-label-stack">
+                        <Label text="{{ peripheral.name }}" class="title-label" textWrap="true"></Label>
+                        <Label text="{{ peripheral.UUID }}" class="uuid-label" textWrap="true"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </GridLayout>
+</GridLayout>

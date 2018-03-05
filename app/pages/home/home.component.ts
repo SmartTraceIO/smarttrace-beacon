@@ -44,5 +44,10 @@ export class HomeComponent implements OnInit {
 
     onBluetoothButtonTap(): void {
         console.log('start with bluetooth');
+        this.routerExtensions.navigate(['bluetooth'], {
+            transition: {
+                name: 'fade'
+            }
+        });
     }
 }

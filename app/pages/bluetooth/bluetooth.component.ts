@@ -1,11 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-
-/* ***********************************************************
-* Before you can navigate to this page from your app, you need to reference this page's module in the
-* global app router module. Add the following object to the global array of routes:
-* { path: "bluetooth", loadChildren: "./bluetooth/bluetooth.module#BluetoothModule" }
-* Note that this simply points the path to the page module file. If you move the page, you need to update the route too.
-*************************************************************/
+import * as bluetooth from 'nativescript-bluetooth';
+import * as observable from 'tns-core-modules/data/observable';
+import { ObservableArray } from 'tns-core-modules/data/observable-array';
 
 @Component({
     selector: "Bluetooth",
@@ -13,15 +9,45 @@ import { Component, OnInit } from "@angular/core";
     templateUrl: "./bluetooth.component.html"
 })
 export class BluetoothComponent implements OnInit {
-    constructor() {
-        /* ***********************************************************
-        * Use the constructor to inject app services that you need in this component.
-        *************************************************************/
-    }
+    peripherals: ObservableArray<any>;
+    isLoading: boolean;
+
+    constructor() {}
 
     ngOnInit(): void {
-        /* ***********************************************************
-        * Use the "ngOnInit" handler to initialize data for this component.
-        *************************************************************/
+        this.checkBluetoothAndMakeItEnabled();
+        this.peripherals = new ObservableArray();
+        this.isLoading = true;
+        bluetooth.startScanning({
+            serviceUUIDs: [], // pass an empty array to scan for all services
+            seconds: 4, // passing in seconds makes the plugin stop scanning after <seconds> seconds
+            onDiscovered: (peripheral: any) => {
+                // peripherals.push(observable.fromObject(peripheral));
+                console.log('peripheral', JSON.stringify(peripheral));
+                this.peripherals.push(observable.fromObject(peripheral));
+            }
+        }).then(() => {
+            this.isLoading = false;
+            console.log('On fulfilled');
+        }, (err) => {
+            console.log('error', err);
+        });
+    }
+
+    checkBluetoothAndMakeItEnabled(): void {
+        bluetooth.isBluetoothEnabled().then(
+            (enabled: boolean) => {
+                console.log('Enabled?', enabled);
+                if (!enabled) {
+                    bluetooth.enable().then(
+                        (agreed: boolean) => {
+                            // --
+                        },
+                        () => {}
+                    );
+                }
+            },
+            () => {}
+        );
     }
 }
