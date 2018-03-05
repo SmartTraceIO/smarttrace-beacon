@@ -41,4 +41,8 @@ export class HomeComponent implements OnInit {
             }
         });
     }
+
+    onBluetoothButtonTap(): void {
+        console.log('start with bluetooth');
+    }
 }

@@ -7,6 +7,9 @@
     "id": "au.com.smarttrace.Beacon",
     "tns-android": {
       "version": "3.4.1"
+    },
+    "tns-ios": {
+      "version": "3.4.1"
     }
   },
   "scripts": {
@@ -24,6 +27,7 @@
     "@angular/router": "~5.2.0",
     "nativescript-angular": "~5.2.0",
     "nativescript-barcodescanner": "2.7.5",
+    "nativescript-bluetooth": "1.3.0",
     "nativescript-pro-ui": "3.4.0",
     "nativescript-theme-core": "~1.0.4",
     "reflect-metadata": "~0.1.10",
