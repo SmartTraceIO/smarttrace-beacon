@@ -2,9 +2,17 @@
     <Label class="action-bar-title" text="Bluetooth"></Label>
 </ActionBar>
 
-<GridLayout rows="auto, *, auto" columns="*" class="page p-t-15">
-    <ActivityIndicator busy="{{ isLoading }}" row="1" col="0" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>
-    <GridLayout rows="*">
+<!--<GridLayout rows="auto, *, auto" columns="*" class="page p-t-15">-->
+    <!--<ActivityIndicator busy="{{ isLoading }}" row="1" col="0" horizontalAlignment="center" verticalAlignment="center"></ActivityIndicator>-->
+
+    <GridLayout>
+        <!--ListView [items]="countries" (itemTap)="onItemTap($event)" class="list-group">
+            <ng-template let-country="item" let-i="index" let-odd="odd" let-even="even">
+                <GridLayout class="list-group-item">
+                    <Label [text]="country.name"></Label>
+                </GridLayout>
+            </ng-template>
+        </ListView-->
         <ListView [items]="peripherals" (itemTap)="onPeripheralTap" separatorColor="#90c3d4" class="list-group">
             <ng-template let-peripheral="item" let-i="index" let-odd="odd" let-even="even">
                 <StackLayout orientation="horizontal" class="list-group-item">
@@ -13,6 +21,7 @@
                         <Label horizontalAlignment="right" width="30" text="{{ peripheral.RSSI }}" class="rssi-label"></Label>
                     </StackLayout>
                     <StackLayout class="padded-label-stack">
+
                         <Label text="{{ peripheral.name }}" class="title-label" textWrap="true"></Label>
                         <Label text="{{ peripheral.UUID }}" class="uuid-label" textWrap="true"></Label>
                     </StackLayout>
@@ -20,4 +29,4 @@
             </ng-template>
         </ListView>
     </GridLayout>
-</GridLayout>
+<!--</GridLayout>-->
